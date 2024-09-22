@@ -1,4 +1,3 @@
-// components/JobList.tsx
 import React from 'react';
 import { Job } from '../types';
 

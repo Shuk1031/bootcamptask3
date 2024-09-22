@@ -1,4 +1,3 @@
-// app/post/page.tsx
 import JobPostForm from '../../../componets/JobPostForm';
 
 export default function PostPage() {

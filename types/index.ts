@@ -1,4 +1,3 @@
-// types/index.ts
 export interface Job {
     id: number;
     title: string;
