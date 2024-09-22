@@ -1,4 +1,4 @@
-import React from 'react';
+
 import JobSearch from '../../componets/JobSearch';
 
 export default function HomePage() {
