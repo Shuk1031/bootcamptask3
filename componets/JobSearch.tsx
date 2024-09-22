@@ -1,4 +1,5 @@
-"use client";
+"use client"; // クライアントコンポーネントとして指定
+
 import React, { useState, useEffect } from 'react';
 import JobList from './JobList';
 import JobCategoryFilter from './JobCategoryFilter';
@@ -12,11 +13,16 @@ const JobSearch = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [salary, setSalary] = useState<number>(0);
 
+  // データ取得をuseEffect内で行う
   useEffect(() => {
     const fetchJobs = async () => {
-      const { data } = await supabase.from('jobs').select('*');
-      setJobs(data || []);
-      setFilteredJobs(data || []);
+      const { data, error } = await supabase.from('jobs').select('*');
+      if (error) {
+        console.error('データ取得エラー:', error);
+      } else {
+        setJobs(data || []);
+        setFilteredJobs(data || []);
+      }
     };
 
     fetchJobs();
