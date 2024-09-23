@@ -43,12 +43,12 @@ const JobSearch = () => {
   }, [categories, salary, jobs]);
 
   return (
-    <div className="flex flex-col md:flex-row">
-      <aside className="w-full md:w-1/4 p-4 bg-white shadow-md">
+    <div className=/*flex flex-col md:flex-row*/"min-h-screen flex flex-col md:flex-row bg-gray-100 p-6">
+      <aside className=/*"w-full md:w-1/4 p-4 bg-white shadow-md*/"w-full md:w-1/4 bg-white p-6 rounded-lg shadow-lg mb-6 md:mb-0">
         <JobCategoryFilter onChangeCategory={setCategories} />
         <SalaryFilter onChangeSalary={setSalary} />
       </aside>
-      <main className="flex-1 p-4">
+      <main className="flex-1 bg-white p-6 rounded-lg shadow-lg ml-0 md:ml-6"/*"flex-1 p-4"*/>
         <JobList jobs={filteredJobs} />
       </main>
     </div>

@@ -1,16 +1,17 @@
+"use client";
+
 import React from 'react';
 import JobSearch from '../../componets/JobSearch';
 
-export default function HomePage() {
+const HomePage: React.FC =() => {
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <div className="container mx-auto">
-        <h1 className="text-4xl font-bold mb-8">求人検索</h1>
-        <JobSearch />
-      </div>
+    <div>
+      <h1 className="text-4xl font-bold mb-8">求人検索</h1>
+      <JobSearch />
     </div>
   );
-}
+};
+export default HomePage;
 /*import Image from "next/image";
 
 export default function Home() {
