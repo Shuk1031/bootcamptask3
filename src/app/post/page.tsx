@@ -1,4 +1,4 @@
-"use client"; // クライアントコンポーネントとして指定
+"use client"; 
 
 import React from 'react';
 import JobPostForm from '../../../componets/JobPostForm';

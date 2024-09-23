@@ -39,7 +39,7 @@ export default function RootLayout({
 
 // app/layout.tsx
 import React from 'react';
-import Header from '../../componets/Header'; // Headerコンポーネントをインポート
+import Header from '../../componets/Header'; 
 import './globals.css';
 
 export const metadata = {

@@ -1,4 +1,4 @@
-"use client"; // クライアントコンポーネントとして指定
+"use client"; 
 
 import React, { useState, useEffect } from 'react';
 import JobList from './JobList';
@@ -13,7 +13,7 @@ const JobSearch = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [salary, setSalary] = useState<number>(0);
 
-  // データ取得をuseEffect内で行う
+  
   useEffect(() => {
     const fetchJobs = async () => {
       const { data, error } = await supabase.from('jobs').select('*');
@@ -43,8 +43,8 @@ const JobSearch = () => {
   }, [categories, salary, jobs]);
 
   return (
-    <div className=/*flex flex-col md:flex-row*/"min-h-screen flex flex-col md:flex-row bg-gray-100 p-6">
-      <aside className=/*"w-full md:w-1/4 p-4 bg-white shadow-md*/"w-full md:w-1/4 bg-white p-6 rounded-lg shadow-lg mb-6 md:mb-0">
+    <div className="min-h-screen flex flex-col md:flex-row bg-gray-100 p-6">
+      <aside className="w-full md:w-1/4 bg-white p-6 rounded-lg shadow-lg mb-6 md:mb-0">
         <JobCategoryFilter onChangeCategory={setCategories} />
         <SalaryFilter onChangeSalary={setSalary} />
       </aside>
