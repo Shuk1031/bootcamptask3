@@ -1,3 +1,4 @@
+"use client"; 
 /*import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -34,7 +35,7 @@ export default function RootLayout({
   );
 }*/
 
-"use client"; 
+
 
 import React from 'react';
 import Link from 'next/link';
