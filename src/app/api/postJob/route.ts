@@ -19,7 +19,8 @@ export async function POST(request: Request) {
       RETURNING *
     `;
     const values = [title, salary, category, description || ''];
-    const result = await client.query(insertQuery, values);
+    // クエリにジェネリック型を適用
+    const result = await client.query<Job>(insertQuery, values);
     client.release();
 
     return NextResponse.json({ message: '求人情報が追加されました。', job: result.rows[0] }, { status: 201 });
