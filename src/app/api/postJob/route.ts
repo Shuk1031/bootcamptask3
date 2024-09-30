@@ -5,7 +5,7 @@ import { Job } from '../../../../types/types';
 
 export async function POST(request: Request) {
   try {
-    const { title, salary, category, description } = await request.json();
+    const { title, salary, category } = await request.json();
 
     // バリデーション
     if (!title || !salary || !category) {
@@ -14,11 +14,11 @@ export async function POST(request: Request) {
 
     const client = await pool.connect();
     const insertQuery = `
-      INSERT INTO jobs (title, salary, category, description)
-      VALUES ($1, $2, $3, $4)
+      INSERT INTO jobs (title, salary, category)
+      VALUES ($1, $2, $3)
       RETURNING *
     `;
-    const values = [title, salary, category, description || ''];
+    const values = [title, salary, category || ''];
     // クエリにジェネリック型を適用
     const result = await client.query<Job>(insertQuery, values);
     client.release();
