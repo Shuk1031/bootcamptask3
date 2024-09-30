@@ -1,9 +1,8 @@
 // lib/db.ts
-// lib/db.ts
 import { Pool } from 'pg';
 
 declare global {
-  // グローバルスコープに pool を追加
+  // eslint-disable-next-line no-var
   var pool: Pool | undefined;
 }
 
