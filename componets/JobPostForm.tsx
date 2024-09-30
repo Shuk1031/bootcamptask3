@@ -85,7 +85,6 @@ const JobPostForm: React.FC = () => {
   const [title, setTitle] = useState('');
   const [salary, setSalary] = useState<number | ''>('');
   const [category, setCategory] = useState('営業');
-  const [description, setDescription] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
 
@@ -94,7 +93,7 @@ const JobPostForm: React.FC = () => {
     setError('');
 
     // バリデーション
-    if (!title || !salary || !category || !description) {
+    if (!title || !salary || !category ) {
       setError('すべてのフィールドを入力してください。');
       return;
     }
@@ -105,7 +104,7 @@ const JobPostForm: React.FC = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ title, salary, category, description })
+        body: JSON.stringify({ title, salary, category })
       });
 
       const data = await res.json();
@@ -166,16 +165,7 @@ const JobPostForm: React.FC = () => {
         </select>
       </div>
 
-      <div className="space-y-2">
-        <label className="block text-sm font-medium text-gray-700">説明:</label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="求人の詳細を入力してください。"
-        ></textarea>
-      </div>
-
+      
       <button
         type="submit"
         className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-300"
