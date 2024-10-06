@@ -82,7 +82,7 @@ const JobSearch: React.FC = () => {
 
   const fetchJobs = async () => {
     try {
-      const res = await fetch('/api/jobs');
+      const res = await fetch('/api/jobs', {cache:'no-store'});
       const data = await res.json();
       if (res.ok) {
         setJobs(data.jobs);
