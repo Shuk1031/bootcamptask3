@@ -28,6 +28,7 @@ export default JobList;*/
 
 import React from 'react';
 import { Job } from '../types/types';
+export const dynamic = 'force-dynamic'
 
 interface JobListProps {
   jobs: Job[];

@@ -64,6 +64,7 @@ import JobList from './JobList';
 import JobCategoryFilter from './JobCategoryFilter';
 import SalaryFilter from './SalaryFilter';
 import { Job } from '../types/types';
+export const dynamic = 'force-dynamic'
 
 const JobSearch: React.FC = () => {
   const [jobs, setJobs] = useState<Job[]>([]);

@@ -1,7 +1,8 @@
 "use client";
-export const dynamic = 'force-dynamic';
+
 import React from 'react';
 import JobSearch from '../../componets/JobSearch';
+export const dynamic = 'force-dynamic';
 
 const HomePage: React.FC =() => {
   return (
