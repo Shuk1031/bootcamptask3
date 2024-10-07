@@ -7,6 +7,7 @@ export async function GET() {
   try {
     const client = await pool.connect();
     const result = await client.query<Job>('SELECT * FROM jobs ORDER BY created_at DESC');
+    console.log(result.rows);  // これを追加してデータの取得結果を確認
     client.release();
     
     console.log('Fetched jobs:', result.rows); // デバッグ用ログ
