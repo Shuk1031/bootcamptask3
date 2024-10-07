@@ -1,6 +1,6 @@
 // JobPostForm.tsx
 
-"use client";
+/*"use client";
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -92,7 +92,7 @@ const JobPostForm: React.FC = () => {
         >
           <option value="営業">営業</option>
           <option value="エンジニア">エンジニア</option>
-          {/* 他のカテゴリも追加可能 */}
+          
         </select>
       </div>
 
@@ -106,8 +106,10 @@ const JobPostForm: React.FC = () => {
   );
 };
 
-export default JobPostForm;
-/*"use client";
+export default JobPostForm;*/
+// JobPostForm.tsx
+
+"use client";
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -141,7 +143,7 @@ const JobPostForm: React.FC = () => {
       const data = await res.json();
 
       if (res.ok) {
-        // 投稿成功後にページをリフレッシュして最新データを取得
+        // 投稿成功後に一覧ページをリフレッシュして最新データを取得
         router.refresh();
         // フォームのリセット
         setTitle('');
@@ -199,7 +201,7 @@ const JobPostForm: React.FC = () => {
         >
           <option value="営業">営業</option>
           <option value="エンジニア">エンジニア</option>
-          
+          {/* 他のカテゴリも追加可能 */}
         </select>
       </div>
 
@@ -213,4 +215,4 @@ const JobPostForm: React.FC = () => {
   );
 };
 
-export default JobPostForm;*/
+export default JobPostForm;

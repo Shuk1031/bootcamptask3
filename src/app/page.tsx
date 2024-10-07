@@ -1,5 +1,7 @@
 // app/page.tsx
 
+// app/page.tsx
+
 export const dynamic = 'force-dynamic'; // ページコンポーネントに配置
 
 import React from 'react';
