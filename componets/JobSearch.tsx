@@ -6,7 +6,6 @@ import JobList from './JobList';
 import JobCategoryFilter from './JobCategoryFilter';
 import SalaryFilter from './SalaryFilter';
 import { Job } from '../types/types';
-export const dynamic = 'force-dynamic'
 
 const JobSearch: React.FC = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -25,7 +24,7 @@ const JobSearch: React.FC = () => {
 
   const fetchJobs = async () => {
     try {
-      const res = await fetch('/api/jobs', {cache:'no-store'});
+      const res = await fetch('/api/jobs', { cache: 'no-store' });
       const data = await res.json();
       if (res.ok) {
         setJobs(data.jobs);
