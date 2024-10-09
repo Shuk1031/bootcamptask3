@@ -15,13 +15,13 @@ export async function GET() {
     
     return NextResponse.json(
       { jobs: result.rows },
-      { headers: { 'Cache-Control': 'no-store' ,}, }
+      { headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate' ,}, }
     );
   } catch (error) {
     console.error('Error in /api/jobs:', error);
     return NextResponse.json(
       { error: 'データの取得に失敗しました。' },
-      { status: 500, headers: { 'Cache-Control': 'no-store' } }
+      { status: 500, headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate' } }
     );
   } finally{
     if(client){
