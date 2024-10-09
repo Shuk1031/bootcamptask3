@@ -99,6 +99,7 @@ const JobSearch: React.FC = () => {
       const res = await fetch('/api/jobs', { cache: 'no-store' });
       if (res.ok) {
         const data: Job[] = await res.json();
+        console.log("Fetched jobs in production:", data);
         setJobs(data);
         setFilteredJobs(data);
       } else {

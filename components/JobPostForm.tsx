@@ -114,6 +114,21 @@ export default JobPostForm;*/
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+import { Job } from '../types/types';
+
+const fetchJobs = async (): Promise<Job[]> => {
+  try {
+    const res = await fetch('/api/jobs', { cache: 'no-store' });
+    if (!res.ok) {
+      throw new Error('求人情報の取得に失敗しました。');
+    }
+    const data = await res.json();
+    return data.jobs; // jobs配列を返す
+  } catch (error) {
+    console.error('求人情報の取得中にエラーが発生しました:', error);
+    return []; // エラーが発生した場合は空の配列を返す
+  }
+};
 const JobPostForm: React.FC = () => {
   const [title, setTitle] = useState('');
   const [salary, setSalary] = useState<number | ''>('');
@@ -124,6 +139,7 @@ const JobPostForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    
 
     // バリデーション
     if (!title || salary === '' || !category) {
@@ -141,6 +157,9 @@ const JobPostForm: React.FC = () => {
       });
 
       if (res.ok) {
+        setTimeout(async () => {
+          await fetchJobs();
+        }, 2000)
         // POST後にデータをリフレッシュ
         router.refresh();
         router.push('/'); // 一覧ページへリダイレクト
