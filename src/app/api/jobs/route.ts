@@ -42,9 +42,9 @@ export async function GET() {
 
     return NextResponse.json(result.rows, {
       headers: {
-        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Cache-Control': 'no-store',
         'CDN-Cache-Control':'no-store',
-        'vercel-CDN-Cache-Control':'no-store'
+        'Vercel-CDN-Cache-Control':'no-store'
       },
     });
   } catch (error) {
@@ -54,7 +54,9 @@ export async function GET() {
       {
         status: 500,
         headers: {
-          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Cache-Control': 'no-store',
+          'CDN-Cache-Control':'no-store',
+          'Vercel-CDN-Cache-Control':'no-store'
         },
       }
     );
