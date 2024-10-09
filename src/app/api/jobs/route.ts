@@ -11,7 +11,7 @@ export async function GET() {
     console.log(result.rows);  // これを追加してデータの取得結果を確認
     
     
-    console.log('Fetched jobs:', result.rows); // デバッグ用ログ
+    console.log('Fetched jobs from DB:', result.rows); // デバッグ用ログ
     
     return NextResponse.json(
       { jobs: result.rows },
