@@ -4,11 +4,12 @@ import pool from '../../../../lib/db';
 import { Job } from '../../../../types/types';
 
 export async function GET() {
+  let client;
   try {
-    const client = await pool.connect();
+    client = await pool.connect();
     const result = await client.query<Job>('SELECT * FROM jobs ORDER BY created_at DESC');
     console.log(result.rows);  // これを追加してデータの取得結果を確認
-    client.release();
+    
     
     console.log('Fetched jobs:', result.rows); // デバッグ用ログ
     
@@ -22,6 +23,10 @@ export async function GET() {
       { error: 'データの取得に失敗しました。' },
       { status: 500, headers: { 'Cache-Control': 'no-store' } }
     );
+  } finally{
+    if(client){
+      client.release();
+    }
   }
 }
 // app/api/jobs/route.ts
