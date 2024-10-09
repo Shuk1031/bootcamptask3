@@ -1,4 +1,5 @@
 // lib/db.ts
+
 import { Pool } from 'pg';
 
 declare global {
@@ -7,13 +8,15 @@ declare global {
   var pool: Pool | undefined;
 }
 
-const pool = global.pool || new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false, // 自己署名証明書を許可
-  },
-  connectionTimeoutMillis: 5000,
-});
+const pool =
+  global.pool ||
+  new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false, // 自己署名証明書を許可
+    },
+    connectionTimeoutMillis: 5000,
+  });
 
 if (process.env.NODE_ENV !== 'production') {
   global.pool = pool;

@@ -1,5 +1,5 @@
 
-import { NextResponse } from 'next/server';
+/*import { NextResponse } from 'next/server';
 import pool from '../../../../lib/db';
 import { Job } from '../../../../types/types';
 
@@ -28,29 +28,37 @@ export async function GET() {
       client.release();
     }
   }
-}
-// app/api/jobs/route.ts
-
-/*import { NextResponse } from 'next/server';
+}*/
+import { NextResponse } from 'next/server';
 import pool from '../../../../lib/db';
 import { Job } from '../../../../types/types';
 
 export async function GET() {
+  let client;
   try {
-    const client = await pool.connect();
+    client = await pool.connect();
     const result = await client.query<Job>('SELECT * FROM jobs ORDER BY created_at DESC');
-    client.release();
-    
-    // キャッシュを無効にするヘッダーを追加
-    return NextResponse.json(
-      { jobs: result.rows },
-      { headers: { 'Cache-Control': 'no-store' } }
-    );
+    console.log('Fetched jobs from DB:', result.rows); // デバッグ用ログ
+
+    return NextResponse.json(result.rows, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      },
+    });
   } catch (error) {
     console.error('Error in /api/jobs:', error);
     return NextResponse.json(
       { error: 'データの取得に失敗しました。' },
-      { status: 500, headers: { 'Cache-Control': 'no-store' } }
+      {
+        status: 500,
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        },
+      }
     );
+  } finally {
+    if (client) {
+      client.release();
+    }
   }
-}*/
+}

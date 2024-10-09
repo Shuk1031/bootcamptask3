@@ -1,4 +1,5 @@
-/*"use client";
+/*
+"use client";
 
 import React from 'react';
 
@@ -28,18 +29,21 @@ const SalaryFilter: React.FC<SalaryFilterProps> = ({ onChangeSalary }) => {
 };
 
 export default SalaryFilter;*/
-// components/SalaryFilter.tsx
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 
 interface SalaryFilterProps {
   onChangeSalary: (salary: number) => void;
 }
 
 const SalaryFilter: React.FC<SalaryFilterProps> = ({ onChangeSalary }) => {
+  const [selectedSalary, setSelectedSalary] = useState<number>(0);
+
   const handleSalaryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    onChangeSalary(Number(e.target.value));
+    const salaryValue = Number(e.target.value);
+    setSelectedSalary(salaryValue);
+    onChangeSalary(salaryValue);
   };
 
   return (
@@ -48,6 +52,7 @@ const SalaryFilter: React.FC<SalaryFilterProps> = ({ onChangeSalary }) => {
       <select
         className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         onChange={handleSalaryChange}
+        value={selectedSalary}
       >
         <option value="0">指定なし</option>
         <option value="300">300万円以上</option>

@@ -1,6 +1,6 @@
 
-
-/*"use client"; 
+// components/Header.tsx
+/*"use client";
 
 import React from 'react';
 import Link from 'next/link';
@@ -24,7 +24,6 @@ const Header: React.FC = () => {
 };
 
 export default Header;*/
-// components/Header.tsx
 "use client";
 
 import React from 'react';
@@ -36,11 +35,11 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <h1 className="text-xl font-bold">求人検索アプリ</h1>
         <nav className="flex space-x-4">
-          <Link href="/" className="hover:underline">
-            求人検索
+          <Link href="/" passHref legacyBehavior>
+            <a className="hover:underline">求人検索</a>
           </Link>
-          <Link href="/post" className="hover:underline">
-            求人投稿
+          <Link href="/post" passHref legacyBehavior>
+            <a className="hover:underline">求人投稿</a>
           </Link>
         </nav>
       </div>

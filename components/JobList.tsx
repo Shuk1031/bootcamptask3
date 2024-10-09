@@ -1,6 +1,6 @@
-// JobList.tsx
+/*
 
-/*"use client";
+"use client";  
 
 import React from 'react';
 import { Job } from '../types/types';
@@ -27,9 +27,7 @@ const JobList: React.FC<JobListProps> = ({ jobs }) => {
 };
 
 export default JobList;*/
-// JobList.tsx
-
-"use client";  
+"use client";
 
 import React from 'react';
 import { Job } from '../types/types';
@@ -46,7 +44,7 @@ const JobList: React.FC<JobListProps> = ({ jobs }) => {
         {jobs.map((job) => (
           <li key={job.id} className="border border-gray-300 p-4 rounded bg-gray-50">
             <span className="font-semibold">{job.title}</span> | 年収:
-            <span className="text-blue-500"> {job.salary}万円</span>   
+            <span className="text-blue-500"> {job.salary}万円</span>
             <p className="text-sm text-gray-600">カテゴリ: {job.category}</p>
           </li>
         ))}

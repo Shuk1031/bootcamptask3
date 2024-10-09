@@ -1,7 +1,7 @@
-"use client"; 
+// src/app/post/page.tsx
 
 import React from 'react';
-import JobPostForm from '../../../componets/JobPostForm';
+import JobPostForm from '../../../components/JobPostForm';
 
 const JobPostPage: React.FC = () => {
   return (
