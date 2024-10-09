@@ -43,6 +43,8 @@ export async function GET() {
     return NextResponse.json(result.rows, {
       headers: {
         'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'CDN-Cache-Control':'no-store',
+        'vercel-CDN-Cache-Control':'no-store'
       },
     });
   } catch (error) {
