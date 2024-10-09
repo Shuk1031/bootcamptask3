@@ -15,7 +15,7 @@ export async function GET() {
     
     return NextResponse.json(
       { jobs: result.rows },
-      { headers: { 'Cache-Control': 'no-store' } }
+      { headers: { 'Cache-Control': 'no-store' ,}, }
     );
   } catch (error) {
     console.error('Error in /api/jobs:', error);

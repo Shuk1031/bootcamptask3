@@ -36,6 +36,7 @@ const JobPostForm: React.FC = () => {
       if (res.ok) {
         // 投稿成功後に一覧ページにリダイレクト
         router.push('/');
+        router.refresh();
         // フォームのリセット
         setTitle('');
         setSalary('');

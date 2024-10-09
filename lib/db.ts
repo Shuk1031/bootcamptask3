@@ -12,6 +12,7 @@ const pool = global.pool || new Pool({
   ssl: {
     rejectUnauthorized: false, // 自己署名証明書を許可
   },
+  connectionTimeoutMillis: 5000,
 });
 
 if (process.env.NODE_ENV !== 'production') {
