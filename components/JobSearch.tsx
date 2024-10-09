@@ -85,6 +85,9 @@ const JobSearch: React.FC = () => {
 
   useEffect(() => {
     fetchJobs();
+    const interval = setInterval(fetchJobs, 5000); // 5秒ごとにデータを取得
+
+    return () => clearInterval(interval); // コンポーネントがアンマウントされたらポーリングを停止
   }, []);
 
   useEffect(() => {

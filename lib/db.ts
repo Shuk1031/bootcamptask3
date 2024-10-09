@@ -11,11 +11,11 @@ declare global {
 const pool =
   global.pool ||
   new Pool({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: process.env.DATABASE_URL, // Supabaseの接続情報を環境変数から取得
     ssl: {
-      rejectUnauthorized: false, // 自己署名証明書を許可
+      rejectUnauthorized: false, // SSLの自己署名証明書を許可
     },
-    connectionTimeoutMillis: 5000,
+    connectionTimeoutMillis: 5000, // タイムアウトを設定
   });
 
 if (process.env.NODE_ENV !== 'production') {

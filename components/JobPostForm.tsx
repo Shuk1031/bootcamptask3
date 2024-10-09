@@ -141,8 +141,9 @@ const JobPostForm: React.FC = () => {
       });
 
       if (res.ok) {
-        // 投稿成功後に一覧ページにリダイレクト
-        router.push('/');
+        // POST後にデータをリフレッシュ
+        router.refresh();
+        router.push('/'); // 一覧ページへリダイレクト
       } else {
         const data = await res.json();
         setError(data.error || '投稿に失敗しました。');
@@ -196,7 +197,6 @@ const JobPostForm: React.FC = () => {
         >
           <option value="営業">営業</option>
           <option value="エンジニア">エンジニア</option>
-          {/* 他のカテゴリも追加可能 */}
         </select>
       </div>
 
@@ -211,4 +211,3 @@ const JobPostForm: React.FC = () => {
 };
 
 export default JobPostForm;
-
