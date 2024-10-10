@@ -68,7 +68,7 @@ const JobSearch: React.FC = () => {
 };
 
 export default JobSearch;*/
-"use client";
+/*"use client";
 
 import React, { useState, useEffect } from 'react';
 import JobList from './JobList';
@@ -140,17 +140,19 @@ const JobSearch: React.FC = () => {
   );
 };
 
-export default JobSearch;
+export default JobSearch;*/
 // components/JobSearch.tsx
 
-/*"use client";
+// components/JobSearch.tsx
+
+"use client";
 
 import React, { useState, useEffect } from 'react';
+import useSWR from 'swr';
 import JobList from './JobList';
 import JobCategoryFilter from './JobCategoryFilter';
 import SalaryFilter from './SalaryFilter';
 import { Job } from '../types/types';
-import useSWR from 'swr';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
@@ -196,4 +198,4 @@ const JobSearch = () => {
   );
 };
 
-export default JobSearch;*/
+export default JobSearch;

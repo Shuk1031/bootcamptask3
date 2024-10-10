@@ -29,7 +29,7 @@ export async function GET() {
     }
   }
 }*/
-import { NextResponse } from 'next/server';
+/*import { NextResponse } from 'next/server';
 import pool from '../../../../lib/db';
 import { Job } from '../../../../types/types';
 
@@ -65,6 +65,33 @@ export async function GET() {
       client.release();
     }
   }
-}
+}*/
+// app/api/jobs/route.ts
 // app/api/jobs/route.ts
 
+import { NextResponse } from 'next/server';
+import pool from '../../../../lib/db';
+import { Job } from '../../../../types/types';
+
+export async function GET() {
+  let client;
+  try {
+    client = await pool.connect();
+    const result = await client.query<Job>('SELECT * FROM jobs ORDER BY created_at DESC');
+    return NextResponse.json(result.rows, {
+      headers: {
+        'Cache-Control': 'no-store, max-age=0',
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching jobs:', error);
+    return NextResponse.json(
+      { error: 'データの取得に失敗しました。' },
+      { status: 500 }
+    );
+  } finally {
+    if (client) {
+      client.release();
+    }
+  }
+}
