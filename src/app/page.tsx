@@ -2,7 +2,7 @@
 
 // app/page.tsx
 
-import Header from '../../components/Header';
+/*import Header from '../../components/Header';
 import JobList from '../../components/JobList';
 import { Job } from '../../types/types';
 import pool from '../../lib/db';
@@ -34,9 +34,9 @@ const HomePage = async () => {
   );
 };
 
-export default HomePage;
+export default HomePage;*/
 
-/*export const dynamic = 'force-dynamic'; // ページコンポーネントに配置
+export const dynamic = 'force-dynamic'; // ページコンポーネントに配置
 
 import React from 'react';
 import JobSearch from '../../components/JobSearch'; // パスを修正
@@ -50,4 +50,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;*/
+export default HomePage;

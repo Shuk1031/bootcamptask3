@@ -28,7 +28,7 @@ const JobList: React.FC<JobListProps> = ({ jobs }) => {
 
 export default JobList;*/
 
-
+"use client"
 import React from 'react';
 import { Job } from '../types/types';
 
