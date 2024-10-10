@@ -66,3 +66,5 @@ export async function GET() {
     }
   }
 }
+// app/api/jobs/route.ts
+
