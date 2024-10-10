@@ -1,29 +1,21 @@
 /// app/page.tsx
 
-import React from 'react';
+// app/page.tsx
+
 import Header from '../../components/Header';
 import JobList from '../../components/JobList';
 import { Job } from '../../types/types';
 import pool from '../../lib/db';
 
-export const getServerSideProps = async () => {
+const getJobs = async (): Promise<Job[]> => {
   let client;
   try {
     client = await pool.connect();
     const result = await client.query<Job>('SELECT * FROM jobs ORDER BY created_at DESC');
-    return {
-      props: {
-        jobs: result.rows,
-      },
-    };
+    return result.rows;
   } catch (error) {
     console.error('Error fetching jobs:', error);
-    return {
-      props: {
-        jobs: [],
-        error: '求人情報の取得に失敗しました。',
-      },
-    };
+    return [];
   } finally {
     if (client) {
       client.release();
@@ -31,11 +23,12 @@ export const getServerSideProps = async () => {
   }
 };
 
-const HomePage = ({ jobs, error }: { jobs: Job[]; error?: string }) => {
+const HomePage = async () => {
+  const jobs = await getJobs();
+
   return (
     <div>
       <Header />
-      {error && <p className="text-red-500">{error}</p>}
       <JobList jobs={jobs} />
     </div>
   );
