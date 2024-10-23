@@ -78,6 +78,7 @@ export async function GET() {
   try {
     client = await pool.connect();
     const result = await client.query<Job>('SELECT * FROM jobs ORDER BY created_at DESC');
+    console.log('Fetched jobs:', result.rows); 
     return NextResponse.json(result.rows, {
       headers: {
         'Cache-Control': 'no-store, max-age=0',
