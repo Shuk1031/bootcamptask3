@@ -3,8 +3,10 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSWRConfig } from 'swr'; // 追加
-import { Job } from '../types/types';
+import { useSWRConfig } from 'swr'; // mutate関数を取得するため
+
+// Job 型は不要な場合、削除する
+// import { Job } from '../types/types'; 
 
 const JobPostForm: React.FC = () => {
   const [title, setTitle] = useState('');
@@ -95,7 +97,6 @@ const JobPostForm: React.FC = () => {
         >
           <option value="営業">営業</option>
           <option value="エンジニア">エンジニア</option>
-          {/* 他のカテゴリも追加可能 */}
         </select>
       </div>
 
