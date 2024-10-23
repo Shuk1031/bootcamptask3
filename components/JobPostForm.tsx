@@ -1,24 +1,11 @@
 
-/**"use client";
+"use client";
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-
+import { useSWRConfig } from 'swr'; // 追加
 import { Job } from '../types/types';
 
-const fetchJobs = async (): Promise<Job[]> => {
-  try {
-    const res = await fetch('/api/jobs', { cache: 'no-store' });
-    if (!res.ok) {
-      throw new Error('求人情報の取得に失敗しました。');
-    }
-    const data = await res.json();
-    return data.jobs; // jobs配列を返す
-  } catch (error) {
-    console.error('求人情報の取得中にエラーが発生しました:', error);
-    return []; // エラーが発生した場合は空の配列を返す
-  }
-};
 const JobPostForm: React.FC = () => {
   const [title, setTitle] = useState('');
   const [salary, setSalary] = useState<number | ''>('');
@@ -26,10 +13,11 @@ const JobPostForm: React.FC = () => {
   const [error, setError] = useState('');
   const router = useRouter();
 
+  const { mutate } = useSWRConfig(); // mutate関数を取得
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    
 
     // バリデーション
     if (!title || salary === '' || !category) {
@@ -47,12 +35,10 @@ const JobPostForm: React.FC = () => {
       });
 
       if (res.ok) {
-        setTimeout(async () => {
-          await fetchJobs();
-        }, 2000)
-        // POST後にデータをリフレッシュ
-        router.refresh();
-        router.push('/'); // 一覧ページへリダイレクト
+        // mutate関数でデータをリフレッシュ
+        mutate('/api/jobs');
+        // 一覧ページへリダイレクト
+        router.push('/');
       } else {
         const data = await res.json();
         setError(data.error || '投稿に失敗しました。');
@@ -72,6 +58,7 @@ const JobPostForm: React.FC = () => {
 
       {error && <p className="text-red-500">{error}</p>}
 
+      {/* タイトル */}
       <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-700">タイトル:</label>
         <input
@@ -84,6 +71,7 @@ const JobPostForm: React.FC = () => {
         />
       </div>
 
+      {/* 年収 */}
       <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-700">年収 (万円):</label>
         <input
@@ -96,6 +84,7 @@ const JobPostForm: React.FC = () => {
         />
       </div>
 
+      {/* カテゴリ */}
       <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-700">カテゴリ:</label>
         <select
@@ -106,6 +95,7 @@ const JobPostForm: React.FC = () => {
         >
           <option value="営業">営業</option>
           <option value="エンジニア">エンジニア</option>
+          {/* 他のカテゴリも追加可能 */}
         </select>
       </div>
 
@@ -119,11 +109,10 @@ const JobPostForm: React.FC = () => {
   );
 };
 
-export default JobPostForm;*/
-
+export default JobPostForm;
 // components/JobPostForm.tsx
 
-"use client";
+/**"use client";
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -217,7 +206,7 @@ const JobPostForm: React.FC = () => {
         >
           <option value="営業">営業</option>
           <option value="エンジニア">エンジニア</option>
-          {/* 他のカテゴリも追加可能 */}
+          
         </select>
       </div>
 
@@ -231,4 +220,4 @@ const JobPostForm: React.FC = () => {
   );
 };
 
-export default JobPostForm;
+export default JobPostForm;*/

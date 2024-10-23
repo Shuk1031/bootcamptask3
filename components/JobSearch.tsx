@@ -3,7 +3,7 @@
 
 // components/JobSearch.tsx
 
-"use client";
+/**"use client";
 
 import React, { useState, useEffect } from 'react';
 import useSWR from 'swr';
@@ -58,42 +58,47 @@ const JobSearch = () => {
 
 export default JobSearch;
 
-/**"use client";
+*/
 
-import React, { useState, useEffect } from 'react';
+"use client";
+
+import React, { useState, useEffect, useCallback } from 'react';
 import useSWR from 'swr';
 import JobList from './JobList';
 import JobCategoryFilter from './JobCategoryFilter';
 import SalaryFilter from './SalaryFilter';
 import { Job } from '../types/types';
 
-const fetcher = (url: string) => fetch(url).then(res => res.json());
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const JobSearch = () => {
-  const { data: jobs, error } = useSWR<Job[]>('/api/jobs', fetcher, { refreshInterval: 5000 });
+  const { data: jobs, error } = useSWR<Job[]>('/api/jobs', fetcher);
   const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [salary, setSalary] = useState<number>(0);
+
+  const filterJobs = useCallback(
+    (jobs: Job[]) => {
+      let filtered = [...jobs];
+
+      if (categories.length > 0) {
+        filtered = filtered.filter((job) => categories.includes(job.category));
+      }
+
+      if (salary > 0) {
+        filtered = filtered.filter((job) => job.salary >= salary);
+      }
+
+      setFilteredJobs(filtered);
+    },
+    [categories, salary]
+  );
 
   useEffect(() => {
     if (jobs) {
       filterJobs(jobs);
     }
-  }, [jobs, categories, salary]);
-
-  const filterJobs = (jobs: Job[]) => {
-    let filtered = [...jobs];
-
-    if (categories.length > 0) {
-      filtered = filtered.filter((job) => categories.includes(job.category));
-    }
-
-    if (salary > 0) {
-      filtered = filtered.filter((job) => job.salary >= salary);
-    }
-
-    setFilteredJobs(filtered);
-  };
+  }, [jobs, categories, salary, filterJobs]);
 
   if (error) return <div>求人情報の取得に失敗しました。</div>;
   if (!jobs) return <div>読み込み中...</div>;
@@ -111,4 +116,4 @@ const JobSearch = () => {
   );
 };
 
-export default JobSearch;*/
+export default JobSearch;
