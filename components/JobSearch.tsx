@@ -1,6 +1,8 @@
 
 // components/JobSearch.tsx
 
+// components/JobSearch.tsx
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -13,7 +15,7 @@ import { Job } from '../types/types';
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 const JobSearch = () => {
-  const { data: jobs, error, mutate } = useSWR<Job[]>('/api/jobs', fetcher);
+  const { data: jobs, error } = useSWR<Job[]>('/api/jobs', fetcher);
   const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [salary, setSalary] = useState<number>(0);
